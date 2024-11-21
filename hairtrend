@@ -1,0 +1,19 @@
+# load required library
+library (gtrends)
+
+# create empty data frame for loop to populate
+query_df <- data.frame(subject = character (0), related_queries = character (0), value = character (0), geo = character (0), keyword = character (0),               category = character (0))
+
+#specify brands
+brands <- c("Manic Panic", "oVertone", "Arctic Fox", "Lunar Tides", "Sally Beauty", "Ulta Beauty", "Lime Crime", "Punky Colour", "dpHue", "Maria             Nila")
+
+# create loop for API
+for (i in 1:length(brands)) {
+trend_data <- gtrends(keyword = c(brands[i]),
+              time = "today-3-m")
+cur-data <- trends_data$related_queries
+query_df <- rbind(query_df, cur_data)
+}
+
+#export to local computer as csv
+write.csv2(query_df, "searchvolume.csv")
